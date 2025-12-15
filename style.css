@@ -1,0 +1,103 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Container utama */
+.map-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1b5e20;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  z-index: 1000;
+}
+
+/* Sidebar tombol peta */
+.map-buttons {
+  position: absolute;
+  top: 55%;
+  left: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+}
+
+/* Tombol peta */
+.map-buttons button {
+  background: rgba(46, 125, 50, 0.75); /* hijau transparan */
+  color: #ffffff;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  width: 200px;
+  text-align: left;
+  backdrop-filter: blur(4px);
+  transition: all 0.25s ease;
+}
+
+/* Hover efek */
+.map-buttons button:hover {
+  background: rgba(27, 94, 32, 0.9);
+  transform: translateX(3px);
+}
+
+/* Tombol aktif */
+.map-buttons button.active {
+  background: rgba(27, 94, 32, 1);
+  font-weight: 600;
+}
+
+/* Judul peta */
+.map-title {
+  position: absolute;
+  top: 105px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.95);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #1b5e20;
+  z-index: 1000;
+}
+
+/* Legenda (opsional) */
+.legend-box {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.legend-box img {
+  width: 140px;
+}
+
+/* Iframe peta */
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

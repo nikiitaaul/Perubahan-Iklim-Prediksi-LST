@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>WebGIS Prediksi LST Bandar Lampung 2030</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="map-container">
+
+  <div class="header">
+    WEBGIS PREDIKSI LAND SURFACE TEMPERATURE 2030
+  </div>
+
+  <!-- BUTTON DI SAMPING -->
+<div class="map-buttons">
+  <button class="active" onclick="tampilkan(2)">Prediksi LST 2030</button>
+  <button onclick="tampilkan(1)">LST 2024</button>
+  <button onclick="tampilkan(3)">Tutupan Lahan 2024</button>
+  <button onclick="tampilkan(4)">Prediksi Tutupan Lahan 2030</button>
+</div>
+
+  <div id="judulPeta" class="map-title">
+    Peta Prediksi Land Surface Temperature (LST) Tahun 2030
+  </div>
+
+  <iframe id="petaFrame" src="qgis2web_1/index.html"></iframe>
+
+</div>
+
+<script>
+function tampilkan(n) {
+  const iframe = document.getElementById("petaFrame");
+  const judul = document.getElementById("judulPeta");
+  const buttons = document.querySelectorAll(".map-buttons button");
+
+  buttons.forEach(btn => btn.classList.remove("active"));
+  buttons[n === 2 ? 0 : n === 1 ? 1 : n === 3 ? 2 : 3].classList.add("active");
+
+  if (n === 1) {
+    iframe.src = "qgis2web_1/index.html";
+    judul.innerText = "Peta Land Surface Temperature (LST) Tahun 2024";
+  } else if (n === 2) {
+    iframe.src = "qgis2web_2/index.html";
+    judul.innerText = "Peta Prediksi Land Surface Temperature (LST) Tahun 2030";
+  } else if (n === 3) {
+    iframe.src = "qgis2web_3/index.html";
+    judul.innerText = "Peta Tutupan Lahan Tahun 2024";
+  } else if (n === 4) {
+    iframe.src = "qgis2web_4/index.html";
+    judul.innerText = "Peta Prediksi Tutupan Lahan Tahun 2030";
+  }
+}
+</script>
+
+</body>
+</html>

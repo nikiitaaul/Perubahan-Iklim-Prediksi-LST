@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PEMETAAN PREDIKSI LAND SURFACE TEMPERATURE (LST) DI WILAYAH BANDAR LAMPUNG 2030</title>
+
+  <style>
+  /* Tampilan umum */
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7f6;
+    color: #2c3e2f;
+    margin: 0;
+    text-align: center;
+  }
+
+  h1 {
+    color: #ffffff;
+    padding: 28px 0;
+    background: linear-gradient(90deg, #1b5e20, #2e7d32);
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  /* Kontainer utama */
+  main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* Card box */
+  .card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  }
+
+  h2, h3 {
+    color: #1b5e20;
+    margin-top: 0;
+    border-bottom: 2px solid #c8e6c9;
+    padding-bottom: 6px;
+  }
+
+  p, li {
+    color: #2c3e2f;
+    line-height: 1.7;
+  }
+
+  .lead {
+    text-align: justify;
+    margin-top: 10px;
+  }
+
+  .list {
+    list-style: disc;
+    padding-left: 20px;
+  }
+
+  /* Grid dua kolom */
+  .grid.duo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+  }
+
+  /* Tombol */
+  .buttons {
+    margin: 30px 0;
+  }
+
+  button {
+    background-color: #2e7d32;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 6px;
+    transition: 0.3s;
+    font-weight: 600;
+  }
+
+  button:hover {
+    background-color: #1b5e20;
+  }
+
+  /* Peta */
+  iframe {
+    width: 90%;
+    height: 600px;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+  }
+
+  /* Footer */
+  footer {
+    background: #1b5e20;
+    padding: 30px 0;
+    color: #ffffff;
+  }
+
+  footer .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  footer small {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    opacity: 0.85;
+  }
+</style>
+</head>
+
+<body>
+  <h1>PETA PREDIKSI LST</h1>
+
+  <main role="main">
+    <!-- 📘 Deskripsi -->
+    <section class="hero">
+      <div class="card">
+        <h2>Perubahan Iklim</h2>
+        <p class="lead">  
+          Perubahan iklim adalah perubahan jangka panjang dalam pola suhu, curah hujan, dan fenomena cuaca lainnya di Bumi. Salah satunya ialah perubahan pada temperatur permukaan yang semakin meningkat, seperti yang kita rasakan menjadi lebih panas. Hal ini salah satunya disebabkan karena perbahan dari tutupan lahan. Pada Website ini menunjukkan perbedaan temperatur permukaan pada tahun 2024 dengan perbandingan prediksi pada 2030. Tidak hanya ini, tersedia juga bagaimana perubahan tutupan lahan pada tahun 2024 dan prediksi di tahun 2030.
+        </p>
+      </div>
+    </section>
+
+    <!-- 📊 Sumber Data -->
+    <section class="grid duo" id="sumber">
+      <div class="card">
+        <h3 id="sumber-title">Sumber Data</h3>
+        <ul class="list">
+          <li>LST : LANDSAT 8</li>
+          <li>LULC : ESRI Land Cover</li>
+          <li>Administrasi Kecamatan : BIG (Badan Informasi Geospasial)</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Tombol-tombol peta -->
+  <div class="buttons">
+    <button onclick="tampilkan(1)">Peta LST 2024</button>
+    <button onclick="tampilkan(2)">Peta Prediksi LST 2030</button>
+    <button onclick="tampilkan(3)">Peta Tutupan Lahan 2024</button>
+    <button onclick="tampilkan(4)">Peta Prediksi Tutupan Lahan 2030</button>
+  </div>
+
+  <!-- Judul peta -->
+<h2 id="judulPeta" class="judul-peta">
+  Peta LST Tahun 2024
+</h2>
+
+  <!-- Area tampilan peta -->
+  <iframe id="petaFrame" src="qgis2web_1/index.html"></iframe>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="wrap">
+      <div class="card" id="tentang">
+        <h3 id="tentang-title">Tentang</h3>
+        <p class="muted">
+          Dibuat oleh mahasiswa Sains Atmosfer dan Keplanetan 2022: niki, joy, yemima, nadier, nissa, claudia.
+        </p>
+      </div>
+      <small>© 2025 • Perubahan Iklim</small>
+    </div>
+  </footer>
+
+<script>
+  function tampilkan(nomor) {
+    const iframe = document.getElementById("petaFrame");
+    const judul = document.getElementById("judulPeta");
+
+    if (nomor === 1) {
+      iframe.src = "qgis2web_1/index.html";
+      judul.innerText = "Peta Land Surface Temperature (LST) Tahun 2024";
+    } else if (nomor === 2) {
+      iframe.src = "qgis2web_2/index.html";
+      judul.innerText = "Peta Prediksi Land Surface Temperature (LST) Tahun 2030";
+    } else if (nomor === 3) {
+      iframe.src = "qgis2web_3/index.html";
+      judul.innerText = "Peta Tutupan Lahan Tahun 2024";
+    } else if (nomor === 4) {
+      iframe.src = "qgis2web_4/index.html";
+      judul.innerText = "Peta Prediksi Tutupan Lahan Tahun 2030";
+    }
+  }
+</script>
+</body>
+</html>
